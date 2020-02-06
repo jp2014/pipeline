@@ -40,6 +40,18 @@ platform :android do
     supply
   end
 
+  desc "Upload to firebase distribution"
+  lane :distribute do
+  gradle(task: "assembleRelease")
+  firebase_app_distribution(
+    app: "1:138491911932:android:4771570ee863101ab74179",
+    firebase_cli_token: "1//0fAEKY_05wYcBCgYIARAAGA8SNwF-L9IrVfcQJj8zgJjY3gSCNUld8T0U3jHdcPp0PvofM3ulFNsSAVPM3zIk1jRgQAMBEJ7jxTY",
+    testers: "petersen.jordan@gmail.com",
+    release_notes: "some test notes"
+  )
+  end
+
+
   # You can define as many lanes as you want
 
   after_all do |lane|
