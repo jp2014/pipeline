@@ -1,0 +1,22 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+- task: Bash@3
+  displayName: 'Install firebase-cli'
+  inputs:
+    targetType: 'inline'
+    script: 'brew install firebase-cli'
+- task: Bash@3
+  displayName: 'test'
+  inputs: 
+    targetType: inline
+    script: 'fastlane test'
