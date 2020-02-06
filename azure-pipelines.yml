@@ -1,7 +1,7 @@
 # Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+    # Build your Android project with Gradle.
+    # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+    # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
 - master
@@ -19,13 +19,18 @@ steps:
       brew install firebase-cli
 - task: Bash@3
   displayName: 'Install gems'
-  inputs: 
+  inputs:
     targetType: inline
     script: 'bundle install'
 - task: Bash@3
-  displayName: 'test'
-  inputs: 
+  displayName: 'Unit Test'
+  inputs:
     targetType: inline
     script: 'bundle exec fastlane test'
+- task: Bash@3
+  displayName: 'Build'
+  inputs:
+    targetType: inline
+    script: 'bundle exec fastlane build'
 - publish: $(System.DefaultWorkingDirectory)/app/build/outputs/release/app-release-unsigned.apk
   artifact: Apk
