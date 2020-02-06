@@ -15,7 +15,7 @@ jobs:
         java-version: 1.8
     - name: Install firebase cli
       run: |
-        #node@12 linking conflicts w/ firebase-cli dependency. Unlink first.
+        # node@12 linking conflicts w/ firebase-cli dependency. Unlink first.
         brew unlink node@12
         brew install firebase-cli
     - name: Install gems

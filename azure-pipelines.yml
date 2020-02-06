@@ -27,3 +27,5 @@ steps:
   inputs: 
     targetType: inline
     script: 'bundle exec fastlane test'
+- publish: $(System.DefaultWorkingDirectory)/app/build/outputs/release/app-release-unsigned.apk
+  artifact: Apk
