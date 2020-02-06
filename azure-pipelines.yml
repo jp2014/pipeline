@@ -14,9 +14,16 @@ steps:
   displayName: 'Install firebase-cli'
   inputs:
     targetType: 'inline'
-    script: 'brew install firebase-cli'
+    script: |
+      brew unlink node@6
+      brew install firebase-cli
+- task: Bash@3
+  displayName: 'Install gems'
+  inputs: 
+    targetType: inline
+    script: 'bundle install'
 - task: Bash@3
   displayName: 'test'
   inputs: 
     targetType: inline
-    script: 'fastlane test'
+    script: 'bundle exec fastlane test'
